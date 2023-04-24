@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:kavachz_test/components/home_shimmer.dart';
 import 'package:kavachz_test/controller/category_controller.dart';
 import 'package:kavachz_test/view/product_page.dart';
 import 'package:kavachz_test/widgets/category_card.dart';
@@ -10,19 +11,19 @@ class HomeScreen extends StatelessWidget {
   // List<Products> productList = [];
   List categoryList = [];
 
-  final CategoryController productsController = CategoryController();
-
-  getAllProducts() async {
-    categoryList = await productsController.fetchCategories();
-    // categoryList = productList.map((e) => e.category).toList();
-  }
-
   final List<String> imageList = [
     "assets/modern-stationary-collection-arrangement.jpg",
     "assets/selective-focus-closeup-diamond-rings.jpg",
     "assets/portrait-handsome-stylish-hipster-lambersexual-model.jpg",
     "assets/young-woman-beautiful-dress-hat.jpg"
   ];
+
+  final CategoryController productsController = CategoryController();
+
+  getAllProducts() async {
+    categoryList = await productsController.fetchCategories();
+    // categoryList = productList.map((e) => e.category).toList();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -72,7 +73,7 @@ class HomeScreen extends StatelessWidget {
                   builder: (context, snapshot) {
                     //Loading indicator
                     if (snapshot.connectionState == ConnectionState.waiting) {
-                      return const Center(child: CircularProgressIndicator());
+                      return const HomePageShimmer();
                     }
 
                     //Category Grid view
@@ -87,13 +88,8 @@ class HomeScreen extends StatelessWidget {
                       itemBuilder: (context, index) {
                         //Category card
                         return GestureDetector(
-                          onTap: () => Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                builder: (context) => ProductPage(
-                                  category: categoryList[index],
-                                ),
-                              )),
+                          onTap: () => Navigator.pushNamed(context, '/product',
+                              arguments: categoryList[index]),
                           child: CategoryCard(
                               imageList: imageList,
                               categories: categoryList,

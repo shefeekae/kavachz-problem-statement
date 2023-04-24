@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:kavachz_test/routes/route_generator.dart';
 import 'package:kavachz_test/view/bottom_nav.dart';
 import 'package:kavachz_test/view/home.dart';
 
@@ -18,7 +19,8 @@ class MyApp extends StatelessWidget {
         primarySwatch: Colors.blue,
       ),
       debugShowCheckedModeBanner: false,
-      home: BottomNav(),
+      initialRoute: '/',
+      onGenerateRoute: RouteGenerator.generateRoute,
     );
   }
 }
