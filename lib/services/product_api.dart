@@ -2,6 +2,7 @@ import 'package:http/http.dart' as http;
 import 'package:kavachz_test/model/products.dart';
 
 class ProductApi {
+  // method for fetching products from a particular category
   Future<List<Product>> getProductFromCategory(
       {required String category}) async {
     final uri =

@@ -2,26 +2,22 @@ import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:kavachz_test/components/product_page_shimmer.dart';
 import 'package:kavachz_test/controller/product_controller.dart';
-import 'package:kavachz_test/model/products.dart';
 
 class ProductPage extends StatelessWidget {
   ProductPage({super.key, required this.category});
 
   final String category;
 
-  List<Product> products = [];
-
-  ProductController productController = ProductController();
-
-  getProducts() async {
-    products =
-        await productController.fetchProductsfromCategory(category: category);
-  }
+  final ProductController productController = ProductController();
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        leading: IconButton(
+            color: Colors.black,
+            onPressed: () => Navigator.of(context).pop(),
+            icon: const Icon(Icons.arrow_back_ios)),
         elevation: 0,
         backgroundColor: const Color.fromARGB(255, 250, 249, 249),
         title: Text(
@@ -32,24 +28,28 @@ class ProductPage extends StatelessWidget {
       body: Padding(
         padding: const EdgeInsets.all(8.0),
         child: FutureBuilder(
-          future: getProducts(),
+          future:
+              productController.fetchProductsfromCategory(category: category),
           builder: (context, snapshot) {
             if (snapshot.connectionState == ConnectionState.waiting) {
               return const Center(
                 child: ProductPageShimmer(),
               );
             }
+
+            // Carousel for showing products
             return CarouselSlider(
-                items: products.map(
+                items: snapshot.data!.map(
                   (product) {
                     return Column(
                       children: [
+                        //Product image
                         Expanded(
                           child: Container(
                             height: 300,
                             decoration: BoxDecoration(
                                 borderRadius: BorderRadius.circular(10),
-                                color: Colors.white,
+                                color: const Color.fromARGB(255, 250, 249, 249),
                                 image: DecorationImage(
                                     image: NetworkImage(product.image),
                                     fit: BoxFit.contain)),
@@ -58,6 +58,8 @@ class ProductPage extends StatelessWidget {
                         const SizedBox(
                           height: 10,
                         ),
+
+                        // Product title
                         Text(
                           product.title,
                           style: const TextStyle(
@@ -67,6 +69,8 @@ class ProductPage extends StatelessWidget {
                         const SizedBox(
                           height: 30,
                         ),
+
+                        //Product price
                         Text(
                           "\$${product.price.toString()}",
                           style: const TextStyle(
@@ -75,6 +79,8 @@ class ProductPage extends StatelessWidget {
                         const SizedBox(
                           height: 30,
                         ),
+
+                        //Product rating
                         Text(
                           "Rating - ${product.rating.rate}".toString(),
                           style: const TextStyle(fontSize: 18),

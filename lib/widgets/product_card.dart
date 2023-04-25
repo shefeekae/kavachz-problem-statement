@@ -10,6 +10,7 @@ class ProductCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
       children: [
+        //Product image
         Expanded(
           child: Padding(
             padding: const EdgeInsets.all(8),
@@ -28,6 +29,8 @@ class ProductCard extends StatelessWidget {
             ),
           ),
         ),
+
+        //Product title
         Text(
           products.title,
           maxLines: 1,

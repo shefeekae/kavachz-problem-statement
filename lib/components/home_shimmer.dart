@@ -6,15 +6,16 @@ class HomePageShimmer extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final orientation = MediaQuery.of(context).orientation;
     return Shimmer.fromColors(
       baseColor: Colors.grey[300] as Color,
       highlightColor: Colors.grey[100] as Color,
       child: GridView.builder(
-        gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+        gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
             mainAxisSpacing: 0,
             crossAxisSpacing: 0,
             childAspectRatio: 0.9,
-            crossAxisCount: 2),
+            crossAxisCount: orientation == Orientation.portrait ? 2 : 3),
         itemBuilder: (context, index) {
           return Padding(
             padding: const EdgeInsets.all(8),

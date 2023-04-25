@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 class CategoryCard extends StatelessWidget {
-  CategoryCard({
+  const CategoryCard({
     super.key,
     required this.categories,
     required this.index,
@@ -16,6 +16,7 @@ class CategoryCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
       children: [
+        //Category image
         Expanded(
           child: Padding(
             padding: const EdgeInsets.all(8),
@@ -35,9 +36,13 @@ class CategoryCard extends StatelessWidget {
             ),
           ),
         ),
+
+        //Category name
         Text(
           categories[index],
           style: const TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+          maxLines: 1,
+          overflow: TextOverflow.ellipsis,
         )
       ],
     );

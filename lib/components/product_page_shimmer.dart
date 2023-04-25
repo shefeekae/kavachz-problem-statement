@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/container.dart';
-import 'package:flutter/src/widgets/framework.dart';
 import 'package:shimmer/shimmer.dart';
 
 class ProductPageShimmer extends StatelessWidget {
@@ -8,6 +6,7 @@ class ProductPageShimmer extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final orientation = MediaQuery.of(context).orientation;
     return Shimmer.fromColors(
       baseColor: Colors.grey[300] as Color,
       highlightColor: Colors.grey[100] as Color,
@@ -16,7 +15,7 @@ class ProductPageShimmer extends StatelessWidget {
         child: Column(
           children: [
             Container(
-              height: 300,
+              height: orientation == Orientation.portrait ? 300 : 150,
               width: 250,
               decoration: BoxDecoration(
                   color: Colors.white, borderRadius: BorderRadius.circular(12)),
@@ -25,7 +24,7 @@ class ProductPageShimmer extends StatelessWidget {
             Container(
               color: Colors.white,
               height: 20,
-              width: double.infinity,
+              width: 250,
             ),
             const SizedBox(
               height: 10,
@@ -33,7 +32,7 @@ class ProductPageShimmer extends StatelessWidget {
             Container(
               color: Colors.white,
               height: 20,
-              width: double.infinity,
+              width: 250,
             ),
             const SizedBox(
               height: 10,
@@ -41,7 +40,7 @@ class ProductPageShimmer extends StatelessWidget {
             Container(
               color: Colors.white,
               height: 20,
-              width: double.infinity,
+              width: 250,
             ),
           ],
         ),

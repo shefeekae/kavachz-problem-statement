@@ -5,12 +5,13 @@ class StatsCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final shortestSide = MediaQuery.of(context).size.shortestSide;
     var screenWidth = MediaQuery.of(context).size.width;
     return Padding(
       padding: const EdgeInsets.all(8.0),
       child: Container(
         height: 130,
-        width: screenWidth,
+        width: shortestSide > 500 ? 700 : screenWidth,
         decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(12),
             gradient: const LinearGradient(
@@ -24,12 +25,18 @@ class StatsCard extends StatelessWidget {
           children: [
             //Today's Stats
             Row(
-              children: const [
-                Padding(
-                  padding: EdgeInsets.all(10.0),
-                  child: Text(
-                    "Today's Stats",
-                    style: TextStyle(color: Colors.white, fontSize: 16),
+              children: [
+                Expanded(
+                  child: Padding(
+                    padding: const EdgeInsets.all(10.0),
+                    child: Text(
+                      "Today's Stats",
+                      overflow: TextOverflow.ellipsis,
+                      style: TextStyle(
+                        color: Colors.white,
+                        fontSize: shortestSide < 350 ? 12 : 16,
+                      ),
+                    ),
                   ),
                 ),
               ],
@@ -49,42 +56,60 @@ class StatsCard extends StatelessWidget {
                 children: [
                   //Total Sales
                   Column(
-                    children: const [
+                    children: [
                       Text(
                         "₹ 20",
-                        style: TextStyle(fontSize: 18, color: Colors.white),
+                        overflow: TextOverflow.ellipsis,
+                        style: TextStyle(
+                            fontSize: shortestSide < 350 ? 10 : 16,
+                            color: Colors.white),
                       ),
                       Text(
                         "Total Sales",
-                        style: TextStyle(fontSize: 16, color: Colors.white),
+                        overflow: TextOverflow.ellipsis,
+                        style: TextStyle(
+                            fontSize: shortestSide < 350 ? 10 : 16,
+                            color: Colors.white),
                       )
                     ],
                   ),
 
                   //Total Credit
                   Column(
-                    children: const [
+                    children: [
                       Text(
                         "4",
-                        style: TextStyle(fontSize: 18, color: Colors.white),
+                        overflow: TextOverflow.ellipsis,
+                        style: TextStyle(
+                            fontSize: shortestSide < 350 ? 10 : 16,
+                            color: Colors.white),
                       ),
                       Text(
                         "Total Credit",
-                        style: TextStyle(fontSize: 16, color: Colors.white),
+                        overflow: TextOverflow.ellipsis,
+                        style: TextStyle(
+                            fontSize: shortestSide < 350 ? 10 : 16,
+                            color: Colors.white),
                       )
                     ],
                   ),
 
                   //Amount Credits
                   Column(
-                    children: const [
+                    children: [
                       Text(
                         "₹ 20",
-                        style: TextStyle(fontSize: 18, color: Colors.white),
+                        overflow: TextOverflow.ellipsis,
+                        style: TextStyle(
+                            fontSize: shortestSide < 350 ? 10 : 16,
+                            color: Colors.white),
                       ),
                       Text(
                         "Amount Credits",
-                        style: TextStyle(fontSize: 16, color: Colors.white),
+                        overflow: TextOverflow.ellipsis,
+                        style: TextStyle(
+                            fontSize: shortestSide < 350 ? 10 : 16,
+                            color: Colors.white),
                       )
                     ],
                   )

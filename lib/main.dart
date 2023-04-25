@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:kavachz_test/routes/route_generator.dart';
-import 'package:kavachz_test/view/bottom_nav.dart';
-import 'package:kavachz_test/view/home.dart';
 
 void main() {
   runApp(const MyApp());
