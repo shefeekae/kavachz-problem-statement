@@ -39,6 +39,8 @@ dependencies:
   http: ^0.13.5
   carousel_slider: ^4.2.1
   shimmer: ^2.0.0
+  page_transition: ^2.0.9
+  google_fonts: ^4.0.3
 
 dev_dependencies:
   flutter_test:
@@ -50,6 +52,7 @@ dev_dependencies:
   # package. See that file for information about deactivating specific lint
   # rules and activating additional ones.
   flutter_lints: ^2.0.0
+  mocktail: ^0.3.0
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec

@@ -19,12 +19,8 @@ class BottomNav extends StatelessWidget {
         ],
         currentIndex: 0,
         showUnselectedLabels: true,
-        // fixedColor: Colors.green,
         selectedItemColor: Colors.green,
         unselectedItemColor: Colors.grey,
-        // unselectedItemColor: Colors.grey,
-
-        // unselectedLabelStyle: const TextStyle(color: Colors.grey),
       ),
       body: IndexedStack(
         index: 0,

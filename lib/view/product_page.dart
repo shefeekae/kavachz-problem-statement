@@ -1,5 +1,6 @@
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:kavachz_test/components/product_page_shimmer.dart';
 import 'package:kavachz_test/controller/product_controller.dart';
 
@@ -22,7 +23,7 @@ class ProductPage extends StatelessWidget {
         backgroundColor: const Color.fromARGB(255, 250, 249, 249),
         title: Text(
           category.toUpperCase(),
-          style: const TextStyle(color: Colors.black),
+          style: GoogleFonts.sansita(color: Colors.black),
         ),
       ),
       body: Padding(
@@ -43,26 +44,39 @@ class ProductPage extends StatelessWidget {
                   (product) {
                     return Column(
                       children: [
+                        const SizedBox(
+                          height: 20,
+                        ),
+
                         //Product image
                         Expanded(
                           child: Container(
-                            height: 300,
+                            width: 250,
                             decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(10),
-                                color: const Color.fromARGB(255, 250, 249, 249),
+                                boxShadow: const [
+                                  BoxShadow(
+                                      blurRadius: 10,
+                                      spreadRadius: 0,
+                                      color: Color.fromARGB(255, 182, 182, 182),
+                                      offset: Offset(5, 5))
+                                ],
+                                borderRadius: BorderRadius.circular(12),
+                                // color: const Color.fromARGB(255, 250, 249, 249),
+                                color: Colors.white,
                                 image: DecorationImage(
-                                    image: NetworkImage(product.image),
-                                    fit: BoxFit.contain)),
+                                  scale: 4,
+                                  image: NetworkImage(product.image),
+                                )),
                           ),
                         ),
                         const SizedBox(
-                          height: 10,
+                          height: 30,
                         ),
 
                         // Product title
                         Text(
                           product.title,
-                          style: const TextStyle(
+                          style: GoogleFonts.sansita(
                               fontSize: 18, fontWeight: FontWeight.bold),
                           maxLines: 2,
                         ),
@@ -73,7 +87,7 @@ class ProductPage extends StatelessWidget {
                         //Product price
                         Text(
                           "\$${product.price.toString()}",
-                          style: const TextStyle(
+                          style: GoogleFonts.sansita(
                               fontSize: 20, fontWeight: FontWeight.bold),
                         ),
                         const SizedBox(
@@ -82,18 +96,20 @@ class ProductPage extends StatelessWidget {
 
                         //Product rating
                         Text(
-                          "Rating - ${product.rating.rate}".toString(),
-                          style: const TextStyle(fontSize: 18),
+                          "Rating - ${product.rating.rate}/5".toString(),
+                          style: GoogleFonts.sansita(
+                              fontSize: 18, fontWeight: FontWeight.w500),
                         )
                       ],
                     );
                   },
                 ).toList(),
                 options: CarouselOptions(
+                    autoPlay: true,
                     clipBehavior: Clip.antiAliasWithSaveLayer,
-                    height: 400,
+                    height: 500,
                     animateToClosest: false,
-                    viewportFraction: 0.7,
+                    viewportFraction: 0.85,
                     enlargeCenterPage: true,
                     enableInfiniteScroll: true));
           },

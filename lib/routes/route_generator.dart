@@ -1,33 +1,28 @@
 import 'package:flutter/material.dart';
 import 'package:kavachz_test/view/bottom_nav.dart';
 import 'package:kavachz_test/view/product_page.dart';
+import 'package:page_transition/page_transition.dart';
 
 class RouteGenerator {
   static Route<dynamic> generateRoute(RouteSettings settings) {
     final args = settings.arguments;
 
     switch (settings.name) {
+
+      //Initial Route
       case '/':
         return MaterialPageRoute(
           builder: (context) => const BottomNav(),
         );
-
+      //Product page route
       case '/product':
         if (args is String) {
-          return PageRouteBuilder(
-            pageBuilder: (context, animation, secondaryAnimation) =>
-                ProductPage(category: args),
-            transitionsBuilder:
-                (context, animation, secondaryAnimation, child) {
-              // animation = Tween<double>(begin: 0, end: 1
-              // final tween = Tween(begin: const Offset(1, 0), end: Offset.zero);
-              // final offsetAnimation = animation.drive(tween);
-              return FadeTransition(
-                opacity: animation,
-                alwaysIncludeSemantics: false,
-                child: child,
-              );
-            },
+          return PageTransition(
+            child: ProductPage(category: args),
+            type: PageTransitionType.scale,
+            duration: const Duration(milliseconds: 200),
+            reverseDuration: const Duration(milliseconds: 200),
+            alignment: Alignment.center,
           );
         }
         return _errorRoute();
@@ -43,7 +38,7 @@ class RouteGenerator {
         return Scaffold(
           appBar: AppBar(title: const Text('Error')),
           body: const Center(
-            child: Text('There is Some error in the routing'),
+            child: Text('There is some error in the routing'),
           ),
         );
       },

@@ -1,3 +1,5 @@
+//This is a a shimmer widget for product page.
+
 import 'package:flutter/material.dart';
 import 'package:shimmer/shimmer.dart';
 

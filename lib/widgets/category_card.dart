@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 class CategoryCard extends StatelessWidget {
   const CategoryCard({
@@ -21,8 +22,8 @@ class CategoryCard extends StatelessWidget {
           child: Padding(
             padding: const EdgeInsets.all(8),
             child: Container(
-              height: 300,
-              width: 300,
+              height: 400,
+              width: 400,
               decoration: BoxDecoration(
                   color: const Color.fromARGB(255, 250, 249, 249),
                   borderRadius: BorderRadius.circular(20)),
@@ -40,7 +41,9 @@ class CategoryCard extends StatelessWidget {
         //Category name
         Text(
           categories[index],
-          style: const TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+          style: GoogleFonts.sansita(
+            fontSize: 18,
+          ),
           maxLines: 1,
           overflow: TextOverflow.ellipsis,
         )

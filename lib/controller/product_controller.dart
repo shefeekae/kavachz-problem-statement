@@ -1,8 +1,9 @@
+import 'package:http/http.dart';
 import 'package:kavachz_test/model/products.dart';
 import 'package:kavachz_test/services/product_api.dart';
 
 class ProductController {
-  ProductApi api = ProductApi();
+  ProductApi api = ProductApi(Client());
 
   Future<List<Product>> fetchProductsfromCategory(
       {required String category}) async {
